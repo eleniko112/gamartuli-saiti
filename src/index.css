@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@400;700&family=Noto+Serif+Georgian:wght@400;700&family=Fira+Code:wght@400;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Noto Sans Georgian", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Noto Serif Georgian", ui-serif, system-ui, serif;
+  --font-mono: "Fira Code", ui-monospace, SFMono-Regular, monospace;
+}
+
+body.font-mono-enforced * {
+  font-family: var(--font-mono) !important;
+}
+
+body.no-images-enforced img, 
+body.no-images-enforced [style*="background-image"] {
+  display: none !important;
+}
+
+body.grayscale-enforced {
+  filter: grayscale(1) !important;
+}
+
+body.no-animations-enforced * {
+  animation: none !important;
+  transition: none !important;
+}
+
+
+body {
+  @apply bg-[#00ff00] text-black transition-all duration-300 overflow-x-hidden;
+  font-family: var(--font-sans);
+}
+
+.bento-container {
+  @apply min-h-screen border-[20px] border-double border-red-600 relative overflow-hidden bg-[#00ff00];
+}
+
+.bento-card {
+  @apply bg-white border-8 border-black shadow-[20px_20px_0px_0px_rgba(0,0,0,1)] p-6 relative;
+}
+
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  color: #ff00ff;
+  z-index: -1;
+  animation: glitch-anim 0.3s infinite;
+}
+
+.glitch::after {
+  color: #00ffff;
+  z-index: -2;
+  animation: glitch-anim2 0.3s infinite;
+}
+
+@keyframes glitch-anim {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+/* Chaos intensity classes */
+.jitter-low { animation: jitter 0.5s infinite; }
+.jitter-medium { animation: jitter 0.2s infinite; }
+.jitter-high { animation: jitter 0.05s infinite; }
+
+@keyframes jitter {
+  0% { transform: translate(0,0) rotate(0deg); }
+  25% { transform: translate(1px, 1px) rotate(0.5deg); }
+  50% { transform: translate(-1px, 2px) rotate(-0.5deg); }
+  75% { transform: translate(-2px, -1px) rotate(0.2deg); }
+  100% { transform: translate(0,0) rotate(0deg); }
+}
